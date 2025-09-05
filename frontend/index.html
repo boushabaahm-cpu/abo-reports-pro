@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ABO Chantier Reports — PRO</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header><h1>ABO Chantier Reports — PRO</h1></header>
+<main>
+  <section class="card">
+    <h2>1) Identification du projet</h2>
+    <form id="form-project">
+      <div class="grid">
+        <input name="name" placeholder="Nom du chantier" required />
+        <input name="client_name" placeholder="Client" required />
+      </div>
+      <div class="grid">
+        <input name="dossier_ref" placeholder="N°/Nom de dossier (interne)" />
+        <input name="guichet_unique_ref" placeholder="Référence Guichet Unique" />
+      </div>
+      <input name="responsable_projet" placeholder="Responsable de projet" />
+      <input name="demandeur" placeholder="Demandeur" />
+      <input name="address" placeholder="Adresse du chantier" />
+      <div class="grid">
+        <input name="postal_code" placeholder="CP" />
+        <input name="city" placeholder="Ville" />
+      </div>
+      <div class="grid">
+        <input name="prestataire_detection" placeholder="Prestataire détection" />
+        <input name="prestataire_georef" placeholder="Prestataire géoréférencement" />
+      </div>
+      <div class="grid">
+        <input name="dates_detection" placeholder="Dates détection (ex: 2025-09-04, 2025-09-05)" />
+        <input name="date_georef" placeholder="Date géoréférencement (YYYY-MM-DD)" />
+      </div>
+      <input name="date_rapport" placeholder="Date de rédaction (YYYY-MM-DD)" />
+      <div class="grid">
+        <input name="latitude" placeholder="Latitude" type="number" step="any" />
+        <input name="longitude" placeholder="Longitude" type="number" step="any" />
+      </div>
+      <button type="submit">Créer / Mettre à jour le chantier</button>
+    </form>
+    <div id="projects"></div>
+  </section>
+
+  <section class="card">
+    <h2>2) Rapport terrain</h2>
+    <form id="form-report">
+      <select name="project_id" id="project-select" required></select>
+      <input name="report_type" value="Détection de réseaux" />
+
+      <details open><summary>Nature des réseaux</summary>
+        <div class="chips" id="chips-networks"></div>
+      </details>
+
+      <details><summary>Ressources utilisées</summary>
+        <div id="intervenants"></div>
+        <button class="ghost" type="button" id="btn-add-interv">+ Ajouter intervenant</button>
+        <label>Matériels</label>
+        <div class="chips" id="chips-equipements"></div>
+        <label>Logiciels</label>
+        <div class="chips" id="chips-logiciels"></div>
+      </details>
+
+      <details><summary>Technologies & méthodes</summary>
+        <select name="mesure_mode">
+          <option value="">-- Mode de mesure --</option>
+          <option value="Passif">Passif</option>
+          <option value="Actif">Actif</option>
+        </select>
+        <label>Techniques</label>
+        <div class="chips" id="chips-techniques"></div>
+        <textarea name="methode_detail" placeholder="Détails méthode (paramètres GPR, fréquences, etc.)"></textarea>
+      </details>
+
+      <details><summary>Incertitudes & profondeur</summary>
+        <input name="incertitude_max" placeholder="Incertitude max (ex: 0,50 m flexibles / 0,40 m rigides)" />
+        <input name="profondeur_investigation" placeholder="Profondeur d'investigation (ex: ≈2 m)" />
+      </details>
+
+      <details open><summary>Texte du rapport</summary>
+        <textarea name="objet_etude" placeholder="Objet de l’étude"></textarea>
+        <textarea name="mode_operatoire" placeholder="Mode opératoire"></textarea>
+        <textarea name="remarques" placeholder="Remarques / Observations / Anomalies"></textarea>
+        <textarea name="conclusion" placeholder="Conclusion"></textarea>
+      </details>
+
+      <details><summary>Documents livrés</summary>
+        <div class="chips" id="chips-docs"></div>
+      </details>
+
+      <button type="submit">Créer le rapport</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>3) Photos & Signature</h2>
+    <div class="uploader">
+      <input type="number" id="photo-report-id" placeholder="ID rapport" />
+      <input type="file" id="photo-files" multiple accept="image/*" capture="environment" />
+      <button id="btn-upload-photos">Envoyer les photos</button>
+    </div>
+    <div class="signature">
+      <input type="number" id="sign-report-id" placeholder="ID rapport" />
+      <canvas id="sign-pad" width="360" height="160"></canvas>
+      <div>
+        <button id="btn-clear">Effacer</button>
+        <button id="btn-save-sign">Enregistrer signature</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>4) Export PDF</h2>
+    <input type="number" id="pdf-report-id" placeholder="ID rapport" />
+    <button id="btn-pdf">Générer & Télécharger</button>
+  </section>
+</main>
+<footer><small>MVP — Pensez à sécuriser l'accès avant diffusion.</small></footer>
+<script src="script.js"></script>
+</body>
+</html>
