@@ -1,4 +1,4 @@
-const API='http://localhost:8000';
+const API='https://abo-reports-pro.onrender.com/';
 const NETS=["Electricité (BT/HTA/HTB, éclairage)","Gaz","Hydrocarbures","Produits chimiques","Eau potable (AEP)","Assainissement/Pluvial","Chauffage/Climatisation","Télécommunications","Feux tricolores TBT","Non identifié","Vapeur/Eau chaude/Eau glacée","Transports guidés"];
 const EQUIPS=["GPR US RADAR QUANTUM","Sensors & Software LMX100","Détecteur VIVAX vLoc3‑5000","SPX RD8100","Caméra RIDGID SeeSnake","VIVAX vLoc‑RTK‑Pro","Flexitrace","Pince à champ magnétique"];
 const LOGICIELS=["AutoCAD/COVADIS","Land2Map","Autre"];
